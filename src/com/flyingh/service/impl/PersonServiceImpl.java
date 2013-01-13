@@ -21,16 +21,17 @@ public class PersonServiceImpl implements PersonService {
 	@Override
 	public void save(Person person) {
 		dbOpenHelper.getWritableDatabase().execSQL(
-				"insert into person(name,age) values(?,?)",
-				new Object[] { person.getName(), person.getAge() });
+				"insert into person(name,age,amount) values(?,?,?)",
+				new Object[] { person.getName(), person.getAge(),
+						person.getAmount() });
 	}
 
 	@Override
 	public void update(Person person) {
 		dbOpenHelper.getWritableDatabase().execSQL(
-				"update person set name=?,age=? where id=?",
+				"update person set name=?,age=?,amount=? where id=?",
 				new Object[] { person.getName(), person.getAge(),
-						person.getId() });
+						person.getAmount(), person.getId() });
 	}
 
 	@Override
@@ -49,6 +50,7 @@ public class PersonServiceImpl implements PersonService {
 			person.setId(cursor.getInt(cursor.getColumnIndex("id")));
 			person.setName(cursor.getString(cursor.getColumnIndex("name")));
 			person.setAge(cursor.getInt(cursor.getColumnIndex("age")));
+			person.setAmount(cursor.getInt(cursor.getColumnIndex("amount")));
 			return person;
 		}
 		return null;
@@ -64,6 +66,7 @@ public class PersonServiceImpl implements PersonService {
 			person.setId(cursor.getInt(cursor.getColumnIndex("id")));
 			person.setName(cursor.getString(cursor.getColumnIndex("name")));
 			person.setAge(cursor.getInt(cursor.getColumnIndex("age")));
+			person.setAmount(cursor.getInt(cursor.getColumnIndex("amount")));
 			persons.add(person);
 		}
 		return persons;
@@ -82,6 +85,7 @@ public class PersonServiceImpl implements PersonService {
 			person.setId(cursor.getInt(cursor.getColumnIndex("id")));
 			person.setName(cursor.getString(cursor.getColumnIndex("name")));
 			person.setAge(cursor.getInt(cursor.getColumnIndex("age")));
+			person.setAmount(cursor.getInt(cursor.getColumnIndex("amount")));
 			persons.add(person);
 		}
 		return persons;

@@ -4,6 +4,7 @@ public class Person {
 	private int id;
 	private String name;
 	private int age;
+	private int amount;
 
 	public Person() {
 		super();
@@ -39,8 +40,17 @@ public class Person {
 		this.age = age;
 	}
 
+	public int getAmount() {
+		return amount;
+	}
+
+	public void setAmount(int amount) {
+		this.amount = amount;
+	}
+
 	@Override
 	public String toString() {
-		return "Person [id=" + id + ", name=" + name + ", age=" + age + "]";
+		return "Person [id=" + id + ", name=" + name + ", age=" + age
+				+ ", amount=" + amount + "]";
 	}
 }

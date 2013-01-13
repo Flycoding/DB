@@ -23,6 +23,7 @@ public class PersonServiceImpl2 implements PersonService {
 		ContentValues values = new ContentValues();
 		values.put("name", person.getName());
 		values.put("age", person.getAge());
+		values.put("amount", person.getAmount());
 		dbOpenHelper.getWritableDatabase().insert("person", null, values);
 	}
 
@@ -31,6 +32,7 @@ public class PersonServiceImpl2 implements PersonService {
 		ContentValues values = new ContentValues();
 		values.put("name", person.getName());
 		values.put("age", person.getAge());
+		values.put("amount", person.getAmount());
 		dbOpenHelper.getWritableDatabase().update("person", values, "id=?",
 				new String[] { String.valueOf(person.getId()) });
 	}
@@ -51,6 +53,7 @@ public class PersonServiceImpl2 implements PersonService {
 			person.setId(cursor.getInt(cursor.getColumnIndex("id")));
 			person.setName(cursor.getString(cursor.getColumnIndex("name")));
 			person.setAge(cursor.getInt(cursor.getColumnIndex("age")));
+			person.setAmount(cursor.getInt(cursor.getColumnIndex("amount")));
 			return person;
 		}
 		return null;
@@ -66,6 +69,7 @@ public class PersonServiceImpl2 implements PersonService {
 			person.setId(cursor.getInt(cursor.getColumnIndex("id")));
 			person.setName(cursor.getString(cursor.getColumnIndex("name")));
 			person.setAge(cursor.getInt(cursor.getColumnIndex("age")));
+			person.setAmount(cursor.getInt(cursor.getColumnIndex("amount")));
 			persons.add(person);
 		}
 		return persons;
@@ -81,6 +85,7 @@ public class PersonServiceImpl2 implements PersonService {
 			person.setId(cursor.getInt(cursor.getColumnIndex("id")));
 			person.setName(cursor.getString(cursor.getColumnIndex("name")));
 			person.setAge(cursor.getInt(cursor.getColumnIndex("age")));
+			person.setAmount(cursor.getInt(cursor.getColumnIndex("amount")));
 			persons.add(person);
 		}
 		return persons;
