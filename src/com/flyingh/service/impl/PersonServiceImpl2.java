@@ -94,4 +94,11 @@ public class PersonServiceImpl2 implements PersonService {
 	@Override
 	public void transferAccounts(int id1, int id2, int amount) {
 	}
+
+	@Override
+	public Cursor getCursor(int first, int maxResult) {
+		return dbOpenHelper.getReadableDatabase().query("person",
+				new String[] { "id _id", "id", "name", "age", "amount" }, null,
+				null, null, null, "id", first + "," + maxResult);
+	}
 }

@@ -2,6 +2,8 @@ package com.flyingh.service;
 
 import java.util.List;
 
+import android.database.Cursor;
+
 import com.flyingh.vo.Person;
 
 public interface PersonService {
@@ -18,5 +20,7 @@ public interface PersonService {
 	List<Person> getPager(int first, int maxResult);
 
 	void transferAccounts(int id1, int id2, int amount);
+
+	Cursor getCursor(int first, int maxResult);
 
 }

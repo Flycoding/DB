@@ -104,4 +104,13 @@ public class PersonServiceImpl implements PersonService {
 		db.endTransaction();
 	}
 
+	@Override
+	public Cursor getCursor(int first, int maxResult) {
+		return dbOpenHelper.getReadableDatabase()
+				.rawQuery(
+						"select id _id,t.* from person t order by id limit?,?",
+						new String[] { String.valueOf(first),
+								String.valueOf(maxResult) });
+	}
+
 }
