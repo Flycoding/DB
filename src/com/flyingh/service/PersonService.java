@@ -17,4 +17,6 @@ public interface PersonService {
 
 	List<Person> getPager(int first, int maxResult);
 
+	void transferAccounts(int id1, int id2, int amount);
+
 }

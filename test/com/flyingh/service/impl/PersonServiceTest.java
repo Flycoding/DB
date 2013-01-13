@@ -56,4 +56,10 @@ public class PersonServiceTest extends AndroidTestCase {
 		Person person = personService.get(1);
 		Log.i(TAG, person.toString());
 	}
+
+	public void testTransferAccount() {
+		PersonService personService = new PersonServiceImpl(getContext());
+		personService.transferAccounts(1, 2, 500);
+
+	}
 }

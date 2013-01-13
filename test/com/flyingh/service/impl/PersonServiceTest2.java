@@ -64,5 +64,10 @@ public class PersonServiceTest2 extends AndroidTestCase {
 			Log.i(TAG, person.toString());
 		}
 	}
+	
+	public void  testTransferAccount(){
+		PersonServiceImpl2 ps = new PersonServiceImpl2(getContext());
+		ps.transferAccounts(1, 2, 500);
+	}
 
 }

@@ -90,4 +90,8 @@ public class PersonServiceImpl2 implements PersonService {
 		}
 		return persons;
 	}
+
+	@Override
+	public void transferAccounts(int id1, int id2, int amount) {
+	}
 }

@@ -5,6 +5,7 @@ import java.util.List;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 
 import com.flyingh.db.DBOpenHelper;
 import com.flyingh.service.PersonService;
@@ -89,6 +90,18 @@ public class PersonServiceImpl implements PersonService {
 			persons.add(person);
 		}
 		return persons;
+	}
+
+	@Override
+	public void transferAccounts(int id1, int id2, int amount) {
+		SQLiteDatabase db = dbOpenHelper.getWritableDatabase();
+		db.beginTransaction();
+		db.execSQL("update person set amount=amount-? where id=?",
+				new Object[] { amount, id1 });
+		db.execSQL("update person set amount=amount+? where id=?",
+				new Object[] { amount, id2 });
+		db.setTransactionSuccessful();
+		db.endTransaction();
 	}
 
 }
