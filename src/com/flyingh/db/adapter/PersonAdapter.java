@@ -12,12 +12,12 @@ import android.widget.TextView;
 import com.flyingh.db.R;
 import com.flyingh.vo.Person;
 
-public class PersonBaseAdapter extends BaseAdapter {
+public class PersonAdapter extends BaseAdapter {
 	private Context context;
 	private List<Person> persons;
 	private int resource;
 
-	public PersonBaseAdapter(Context context, List<Person> persons, int resource) {
+	public PersonAdapter(Context context, List<Person> persons, int resource) {
 		super();
 		this.context = context;
 		this.persons = persons;

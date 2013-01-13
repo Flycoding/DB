@@ -9,11 +9,15 @@ import android.app.Activity;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.SimpleCursorAdapter;
+import android.widget.Toast;
 
-import com.flyingh.db.adapter.PersonBaseAdapter;
+import com.flyingh.db.adapter.PersonAdapter;
 import com.flyingh.service.PersonService;
 import com.flyingh.service.impl.PersonServiceImpl2;
 import com.flyingh.vo.Person;
@@ -27,18 +31,33 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		listView = (ListView) findViewById(R.id.listView);
+		listView.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				Cursor cursor = (Cursor) parent.getItemAtPosition(position);
+				int _id = cursor.getInt(cursor.getColumnIndex("_id"));
+				int id2 = cursor.getInt(cursor.getColumnIndex("id"));
+				Toast.makeText(getApplicationContext(), _id+","+id2, Toast.LENGTH_SHORT).show();
+				// Person person = (Person) parent.getItemAtPosition(position);
+				// Toast.makeText(getApplicationContext(), person.toString(),
+				// Toast.LENGTH_SHORT).show();
+			}
+		});
 		ps = new PersonServiceImpl2(getApplicationContext());
 		// display();
-		// display2();
-		display3();
+		display2();
+		// display3();
 	}
 
+	@SuppressWarnings("unused")
 	private void display3() {
-		listView.setAdapter(new PersonBaseAdapter(getApplicationContext(), ps
+		listView.setAdapter(new PersonAdapter(getApplicationContext(), ps
 				.getAll(), R.layout.item));
 	}
 
-	@SuppressWarnings({ "deprecation", "unused" })
+	@SuppressWarnings({ "deprecation" })
 	private void display2() {
 		Cursor cursor = ps.getCursor(0, 15);
 		listView.setAdapter(new SimpleCursorAdapter(getApplicationContext(),
