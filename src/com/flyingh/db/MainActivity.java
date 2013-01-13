@@ -36,28 +36,28 @@ public class MainActivity extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				Cursor cursor = (Cursor) parent.getItemAtPosition(position);
-				int _id = cursor.getInt(cursor.getColumnIndex("_id"));
-				int id2 = cursor.getInt(cursor.getColumnIndex("id"));
-				Toast.makeText(getApplicationContext(), _id+","+id2, Toast.LENGTH_SHORT).show();
-				// Person person = (Person) parent.getItemAtPosition(position);
-				// Toast.makeText(getApplicationContext(), person.toString(),
+				// Cursor cursor = (Cursor) parent.getItemAtPosition(position);
+				// int _id = cursor.getInt(cursor.getColumnIndex("_id"));
+				// int id2 = cursor.getInt(cursor.getColumnIndex("id"));
+				// Toast.makeText(getApplicationContext(), _id + "," + id2,
 				// Toast.LENGTH_SHORT).show();
+				Person person = (Person) parent.getItemAtPosition(position);
+				Toast.makeText(getApplicationContext(), person.toString(),
+						Toast.LENGTH_SHORT).show();
 			}
 		});
 		ps = new PersonServiceImpl2(getApplicationContext());
 		// display();
-		display2();
-		// display3();
+		// display2();
+		display3();
 	}
 
-	@SuppressWarnings("unused")
 	private void display3() {
 		listView.setAdapter(new PersonAdapter(getApplicationContext(), ps
 				.getAll(), R.layout.item));
 	}
 
-	@SuppressWarnings({ "deprecation" })
+	@SuppressWarnings({ "deprecation", "unused" })
 	private void display2() {
 		Cursor cursor = ps.getCursor(0, 15);
 		listView.setAdapter(new SimpleCursorAdapter(getApplicationContext(),

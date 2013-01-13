@@ -45,11 +45,19 @@ public class PersonAdapter extends BaseAdapter {
 			LayoutInflater layoutInflater = (LayoutInflater) context
 					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			convertView = layoutInflater.inflate(resource, null);
+			ViewCache viewCache = new ViewCache();
+			viewCache.idText = (TextView) convertView.findViewById(R.id.id);
+			viewCache.nameText = (TextView) convertView.findViewById(R.id.name);
+			viewCache.ageText = (TextView) convertView.findViewById(R.id.age);
+			viewCache.amountText = (TextView) convertView
+					.findViewById(R.id.amount);
+			convertView.setTag(viewCache);
 		}
-		TextView idText = (TextView) convertView.findViewById(R.id.id);
-		TextView nameText = (TextView) convertView.findViewById(R.id.name);
-		TextView ageText = (TextView) convertView.findViewById(R.id.age);
-		TextView amountText = (TextView) convertView.findViewById(R.id.amount);
+		ViewCache viewCache = (ViewCache) convertView.getTag();
+		TextView idText = viewCache.idText;
+		TextView nameText = viewCache.nameText;
+		TextView ageText = viewCache.ageText;
+		TextView amountText = viewCache.amountText;
 
 		Person person = persons.get(position);
 		idText.setText(String.valueOf(person.getId()));
@@ -58,6 +66,13 @@ public class PersonAdapter extends BaseAdapter {
 		amountText.setText(String.valueOf(person.getAmount()));
 
 		return convertView;
+	}
+
+	private final class ViewCache {
+		private TextView idText;
+		private TextView nameText;
+		private TextView ageText;
+		private TextView amountText;
 	}
 
 }
