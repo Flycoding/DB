@@ -10,10 +10,11 @@ public class Person {
 		super();
 	}
 
-	public Person(String name, int age) {
+	public Person(String name, int age, int amount) {
 		super();
 		this.name = name;
 		this.age = age;
+		this.amount = amount;
 	}
 
 	public int getId() {

@@ -32,7 +32,7 @@ public class PersonServiceTest2 extends AndroidTestCase {
 	public void testUpdate() {
 		PersonServiceImpl2 ps = new PersonServiceImpl2(getContext());
 
-		Person person = new Person("hee", 22);
+		Person person = new Person("hee", 22, 2000);
 		person.setId(2);
 		ps.update(person);
 
@@ -50,7 +50,7 @@ public class PersonServiceTest2 extends AndroidTestCase {
 	}
 
 	public void testGetAll() {
-//		PersonServiceImpl2 ps = new PersonServiceImpl2(getContext());
+		// PersonServiceImpl2 ps = new PersonServiceImpl2(getContext());
 		List<Person> persons = ps.getAll();
 		for (Person person : persons) {
 			Log.i(TAG, person.toString());

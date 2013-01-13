@@ -15,7 +15,7 @@ public class PersonServiceImpl implements PersonService {
 
 	public PersonServiceImpl(Context context) {
 		super();
-		this.dbOpenHelper = new DBOpenHelper(context, "flyingh.db", null, 2);
+		this.dbOpenHelper = new DBOpenHelper(context, "flyingh.db", null, 3);
 	}
 
 	@Override

@@ -17,13 +17,13 @@ public class PersonServiceTest extends AndroidTestCase {
 		PersonService personService = new PersonServiceImpl(getContext());
 		for (int i = 0; i < COUNT; i++) {
 			personService.save(new Person("haha" + i, new Random().nextInt(100)
-					+ i));
+					+ i, 2000 + i * 10));
 		}
 	}
 
 	public void testUpdate() {
-		Person person = new Person("wangwu", 25);
-		person.setId(1);
+		Person person = new Person("haha", 25, 2000);
+		person.setId(2);
 		PersonService personService = new PersonServiceImpl(getContext());
 		personService.update(person);
 	}

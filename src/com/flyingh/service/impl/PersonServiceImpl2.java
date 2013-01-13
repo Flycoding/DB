@@ -15,7 +15,7 @@ public class PersonServiceImpl2 implements PersonService {
 	private DBOpenHelper dbOpenHelper;
 
 	public PersonServiceImpl2(Context context) {
-		dbOpenHelper = new DBOpenHelper(context, "flyingh.db", null, 2);
+		dbOpenHelper = new DBOpenHelper(context, "flyingh.db", null, 3);
 	}
 
 	@Override
