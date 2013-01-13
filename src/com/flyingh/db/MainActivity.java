@@ -13,6 +13,7 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.SimpleCursorAdapter;
 
+import com.flyingh.db.adapter.PersonBaseAdapter;
 import com.flyingh.service.PersonService;
 import com.flyingh.service.impl.PersonServiceImpl2;
 import com.flyingh.vo.Person;
@@ -28,12 +29,18 @@ public class MainActivity extends Activity {
 		listView = (ListView) findViewById(R.id.listView);
 		ps = new PersonServiceImpl2(getApplicationContext());
 		// display();
-		display2();
+		// display2();
+		display3();
 	}
 
-	@SuppressWarnings("deprecation")
+	private void display3() {
+		listView.setAdapter(new PersonBaseAdapter(getApplicationContext(), ps
+				.getAll(), R.layout.item));
+	}
+
+	@SuppressWarnings({ "deprecation", "unused" })
 	private void display2() {
-		Cursor cursor=ps.getCursor(0,15);
+		Cursor cursor = ps.getCursor(0, 15);
 		listView.setAdapter(new SimpleCursorAdapter(getApplicationContext(),
 				R.layout.item, cursor, new String[] { "id", "name", "age",
 						"amount" }, new int[] { R.id.id, R.id.name, R.id.age,
