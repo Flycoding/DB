@@ -27,7 +27,14 @@ public class PersonProvider extends ContentProvider {
 	@Override
 	public Cursor query(Uri uri, String[] projection, String selection,
 			String[] selectionArgs, String sortOrder) {
-		// TODO Auto-generated method stub
+		if (uriMatcher.match(uri) == PERSONS) {
+			return dbOpenHelper.getReadableDatabase()
+					.query("person", projection, selection, selectionArgs,
+							null, null, sortOrder);
+		}else if(uriMatcher.match(uri)==PERSON){
+			return dbOpenHelper.getReadableDatabase().query("person",
+					projection, getWhereClause(uri, selection), selectionArgs, null, null, sortOrder);
+		}
 		return null;
 	}
 
@@ -75,7 +82,13 @@ public class PersonProvider extends ContentProvider {
 	@Override
 	public int update(Uri uri, ContentValues values, String selection,
 			String[] selectionArgs) {
-		// TODO Auto-generated method stub
+		if (uriMatcher.match(uri) == PERSONS) {
+			return dbOpenHelper.getWritableDatabase().update("person", values,
+					selection, selectionArgs);
+		} else if (uriMatcher.match(uri) == PERSON) {
+			return dbOpenHelper.getWritableDatabase().update("person", values,
+					getWhereClause(uri, selection), selectionArgs);
+		}
 		return 0;
 	}
 
