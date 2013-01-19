@@ -16,6 +16,8 @@ public class PersonProvider extends ContentProvider {
 	static {
 		uriMatcher.addURI("com.flyingh.providers.PersonProvider", "person",
 				PERSONS);
+		// uriMatcher.addURI("com.flyingh.providers.PersonProvider", "person/#",
+		// PERSON);
 	}
 
 	@Override
@@ -31,17 +33,22 @@ public class PersonProvider extends ContentProvider {
 			return dbOpenHelper.getReadableDatabase()
 					.query("person", projection, selection, selectionArgs,
 							null, null, sortOrder);
-		}else if(uriMatcher.match(uri)==PERSON){
+		} else if (uriMatcher.match(uri) == PERSON) {
 			return dbOpenHelper.getReadableDatabase().query("person",
-					projection, getWhereClause(uri, selection), selectionArgs, null, null, sortOrder);
+					projection, getWhereClause(uri, selection), selectionArgs,
+					null, null, sortOrder);
 		}
 		return null;
 	}
 
 	@Override
 	public String getType(Uri uri) {
-		// TODO Auto-generated method stub
-		return null;
+		if (uriMatcher.match(uri) == PERSONS) {
+			return "vnd.android.cursor.dir/person";
+		} else if (uriMatcher.match(uri) == PERSON) {
+			return "vnd.android.cursor.item/person";
+		}
+		throw new IllegalArgumentException("uknown uri:" + uri);
 	}
 
 	@Override
