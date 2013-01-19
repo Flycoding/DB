@@ -10,6 +10,7 @@ import android.net.Uri;
 
 public class PersonProvider extends ContentProvider {
 	private static final int PERSONS = 1;
+	private static final int PERSON = 2;
 	private DBOpenHelper dbOpenHelper;
 	private static UriMatcher uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
 	static {
@@ -49,8 +50,26 @@ public class PersonProvider extends ContentProvider {
 
 	@Override
 	public int delete(Uri uri, String selection, String[] selectionArgs) {
-		// TODO Auto-generated method stub
+		if (uriMatcher.match(uri) == PERSONS) {
+			return dbOpenHelper.getWritableDatabase().delete("person",
+					selection, selectionArgs);
+		} else if (uriMatcher.match(uri) == PERSON) {
+			return dbOpenHelper.getWritableDatabase().delete("person",
+					getWhereClause(uri, selection), selectionArgs);
+		}
 		return 0;
+	}
+
+	private String getWhereClause(Uri uri, String selection) {
+		String where = "id=" + ContentUris.parseId(uri);
+		if (isEmpty(selection)) {
+			return where;
+		}
+		return where + " and " + selection;
+	}
+
+	private boolean isEmpty(String selection) {
+		return selection == null || selection.trim().length() > 0;
 	}
 
 	@Override
