@@ -8,5 +8,6 @@
     <string name="name">name</string>
     <string name="age">age</string>
     <string name="amount">amount</string>
+    <string name="person_authority">com.flyingh.providers.PersonProvider</string>
 
 </resources>

@@ -36,6 +36,7 @@ public final class R {
         public static final int id=0x7f040003;
         public static final int menu_settings=0x7f040002;
         public static final int name=0x7f040004;
+        public static final int person_authority=0x7f040007;
     }
     public static final class style {
         /** 

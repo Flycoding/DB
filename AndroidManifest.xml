@@ -2,12 +2,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.flyingh.db"
     android:versionCode="1"
-    android:versionName="1.0" >
+    android:versionName="1.0" xmlns:tools="http://schemas.android.com/tools">
 
     <uses-sdk
         android:minSdkVersion="8"
         android:targetSdkVersion="17" />
-    <instrumentation android:name="android.test.InstrumentationTestRunner" android:targetPackage="com.flyingh.db"></instrumentation>
+
+    <instrumentation
+        android:name="android.test.InstrumentationTestRunner"
+        android:targetPackage="com.flyingh.db" >
+    </instrumentation>
 
     <application
         android:allowBackup="true"
@@ -23,7 +27,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <uses-library android:name="android.test.runner"/>
+
+        <uses-library android:name="android.test.runner" />
+
+        <provider
+            android:name="PersonProvider"
+            android:authorities="@string/person_authority"
+            android:exported="true" tools:ignore="ExportedContentProvider">
+        </provider>
     </application>
 
 </manifest>
