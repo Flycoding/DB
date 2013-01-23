@@ -57,6 +57,7 @@ public class PersonProvider extends ContentProvider {
 		if (uriMatcher.match(uri) == PERSONS) {
 			SQLiteDatabase db = dbOpenHelper.getWritableDatabase();
 			long rowId = db.insert("person", null, values);
+			getContext().getContentResolver().notifyChange(uri, null);
 			return ContentUris.withAppendedId(uri, rowId);
 		}
 		throw new IllegalArgumentException("uknown uri:" + uri);
